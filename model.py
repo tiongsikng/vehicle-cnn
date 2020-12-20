@@ -36,8 +36,10 @@ with tf.device('/gpu:0'):
     l2_reg=0.
     class_names = ['5Ton','BinTruck','BoxTruck','Bus','Car','Carrier','Cement','Crane','Motorcycle','OilTanker','OpenBackTruck','PickUp','Road','Taxi','Tow','TowFlat','Tractor','Trailer','TrashTruck']
 
-    x_train = joblib.load('x_train.pkl')
-    y_train = joblib.load('y_train.pkl')
+    x_train = np.load('x_train.npy')
+    y_train = np.load('y_train.npy')
+    x_test = np.load('x_test.npy')
+    y_test = np.load('y_test.npy')
 
     (x_train, x_test, y_train, y_test) = train_test_split(x_train, y_train, test_size=0.15)
 
@@ -107,6 +109,7 @@ with tf.device('/gpu:0'):
     plt.ylabel('Loss/Accuracy')
     plt.legend()
 
+    plt.savefig('train-test.png')
     plt.show()
-    plt.savefig('model.png')
+
 
